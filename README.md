@@ -1,24 +1,23 @@
-# README
+### Userモデル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+|id |name  |email  |password|password_confirmation|
+|---|---|---|---|---|
+|
 
-Things you may want to cover:
+### Taskモデル
 
-* Ruby version
+|id |user_id  |work  |hose_work|private|
+|---|---|---|---|---|
+|
 
-* System dependencies
+### TaskToLabelモデル
 
-* Configuration
+|id |task_id  |lavel_id  |
+|---|---|---|
+|
 
-* Database creation
+### Labelモデル
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+|id |red  |yellow  |green|
+|---|---|---|---|
+|

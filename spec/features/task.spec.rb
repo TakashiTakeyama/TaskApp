@@ -1,28 +1,37 @@
-# このrequireで、Capybaraなどの、Feature Specに必要な機能を使用可能な状態にしています
 require 'rails_helper'
 
-# このRSpec.featureの右側に、「タスク管理機能」のように、テスト項目の名称を書きます（do ~ endでグループ化されています）
 RSpec.feature "タスク管理機能", type: :feature do
-  # scenario（itのalias）の中に、確認したい各項目のテストの処理を書きます。
   scenario "タスク一覧のテスト" do
     Blog.create!(name: 'test_task_01', details: 'testtesttest')
     Blog.create!(name: 'test_task_02', details: 'samplesample')
 
-    # tasks_pathにvisitする（タスク一覧ページに遷移する）
     visit blogs_path
 
-    # visitした（到着した）expect(page)に（タスク一覧ページに）「testtesttest」「samplesample」という文字列が
-    # have_contentされているか？（含まれているか？）ということをexpectする（確認・期待する）テストを書いている
+    save_and_open_page
+
     expect(page).to have_content 'testtesttest'
-    expect(page).to have_content 'samplesample'
+    expect(page).to have_content ''
 
   end
 
-  scenario "タスク作成のテスト" do
-
+  it "タスク作成のテスト" do
+    visit new_blog_path
+    Blog.new
+    fill_in 'Name', with: 'タスク名'
+    fill_in 'Details', with: 'タスク詳細'
+    click_on 'Create Blog'
+    expect(page).to have_content 'タスク名'
+    expect(page).to have_content 'タスク詳細'
   end
 
   scenario "タスク詳細のテスト" do
-
+    visit new_blog_path
+    Blog.new
+    fill_in 'Name', with: 'タスク名'
+    fill_in 'Details', with: 'タスク詳細'
+    click_on 'Create Blog'
+    visit blogs_path(Blog.last.id)
+    expect(page).to have_content 'タスク名'
+    expect(page).to have_content 'タスク詳細'
   end
 end

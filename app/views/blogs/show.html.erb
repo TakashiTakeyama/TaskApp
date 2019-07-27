@@ -1,14 +1,13 @@
-<p id="notice"><%= notice %></p>
-
+<h3><%= t('view.task_show') %></h3>
 <p>
-  <strong><%= t('view.sample') %></strong>
+  <strong><%= t('view.name') %></strong>
   <%= @blog.name %>
 </p>
 
 <p>
-  <strong>詳細:</strong>
+  <strong><%= t('view.details') %></strong>
   <%= @blog.details %>
 </p>
 
-<%= link_to '編集', edit_blog_path(@blog) %> |
-<%= link_to '戻る', blogs_path %>
+<%= link_to "#{t('view.edit')}", edit_blog_path(@blog) %> |
+<%= link_to "#{t('view.back')}", blogs_path %>

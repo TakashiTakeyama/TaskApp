@@ -1,11 +1,22 @@
 ---
 ja:
   view:
-    sample: タスク名
+    name: タスク名
+    details: 詳細
+    error: 件のエラーがあります
+    task_new: タスクを作成する
+    task_edit: タスク編集
+    task_show: タスク詳細
+    edit: 編集
+    back: 戻る
+    show: 詳細
+    destory: 削除
+    confirm: 本当によろしいですか？
+
   activerecord:
     errors:
       messages:
-        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        record_invalid: 'バリデーションに失敗しましghた: %{errors}'
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"

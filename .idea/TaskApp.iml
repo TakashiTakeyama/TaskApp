@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<module version="4">
-  <component name="ModuleRunConfigurationManager">
-    <shared />
-  </component>
-=======
 <module type="RUBY_MODULE" version="4">
   <component name="FacetManager">
     <facet type="RailsFacetType" name="Ruby on Rails">
@@ -127,5 +121,4 @@
     <LOAD_PATH number="0" />
     <I18N_FOLDERS number="1" string0="$MODULE_DIR$/config/locales" />
   </component>
->>>>>>> step5
 </module>

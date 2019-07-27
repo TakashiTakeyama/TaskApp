@@ -1,7 +1,7 @@
 ---
 ja:
   view:
-    sample: インデントがおかしいのかな？
+    sample: タスク名
   activerecord:
     errors:
       messages:

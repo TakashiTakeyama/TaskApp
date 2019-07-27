@@ -30,7 +30,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     fill_in 'Name', with: 'タスク名'
     fill_in 'Details', with: 'タスク詳細'
     click_on 'Create Blog'
-    visit blogs_path(Blog.last.id)
+    visit blogsrails _path(Blog.last.id)
     expect(page).to have_content 'タスク名'
     expect(page).to have_content 'タスク詳細'
   end

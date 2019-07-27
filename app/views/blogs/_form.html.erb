@@ -1,7 +1,7 @@
 <%= form_with(model:@blog, local: true) do |form| %>
   <% if @blog.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@blog.errors.count, "error") %> prohibited this @blog from being saved:</h2>
+      <h2><%= pluralize(@blog.errors.count, "#{t('view.error')}") %></h2>
 
       <ul>
         <% @blog.errors.full_messages.each do |message| %>
@@ -26,4 +26,4 @@
   </div>
 <% end %>
 
-<%= link_to "戻る", blogs_path %>
+<%= link_to "#{t('view.back')}", blogs_path %>

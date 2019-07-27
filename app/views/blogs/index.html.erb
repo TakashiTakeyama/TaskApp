@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Blogs</h1>
+<h1>Tasks</h1>
 
 <table>
   <thead>
   <tr>
-    <th>Name</th>
+    <th>duty</th>
     <th>Details</th>
     <th colspan="3"></th>
   </tr>
@@ -16,9 +16,9 @@
     <tr>
       <td><%= blog.name %></td>
       <td><%= blog.details %></td>
-      <td><%= link_to '詳細', blog %></td>
-      <td><%= link_to '編集', edit_blog_path(blog) %></td>
-      <td><%= link_to '削除', blog, method: :delete, data: { confirm: '本当にいいですか?' } %></td>
+      <td><%= link_to "#{t('view.show')}", blog %></td>
+      <td><%= link_to "#{t('view.edit')}", edit_blog_path(blog) %></td>
+      <td><%= link_to "#{t('view.destory')}", blog, method: :delete, data: { confirm: "#{t('view.confirm')}" } %></td>
     </tr>
   <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'ブログを書く!!!', new_blog_path %>
+<%= link_to "#{t('view.task_new')}", new_blog_path %>

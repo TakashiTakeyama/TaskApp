@@ -1,9 +1,13 @@
 class BlogsController < ApplicationController
-  before_action :basic
+  # before_action :basic
   before_action :set_blog, only: %i[show edit update destroy]
 
   def index
-    @blogs = Blog.all.order(created_at: :DESC)
+    if params[:expired_at].present?
+      @blogs = Blog.all.order(expired_at: :DESC)
+    else
+      @blogs = Blog.all
+    end
   end
 
   def show
@@ -45,7 +49,7 @@ class BlogsController < ApplicationController
   end
 
   def blog_params
-    params.require(:blog).permit(:name, :details)
+    params.require(:blog).permit(:name, :details, :expired_at)
   end
 
   def production?
@@ -54,7 +58,7 @@ class BlogsController < ApplicationController
 
   def basic
     authenticate_or_request_with_http_basic do |username, password|
-      username == ENV["BASIC_AUTH_NAME"] && password == ENV["BASIC_AUTH_PASSWORD"] if Rails.env.production?
+      username == ENV["BASIC_AUTH_NAME"] && password == ENV["BASIC_AUTH_PASSWORD"] if Rails.env == "production"
     end
   end
 end

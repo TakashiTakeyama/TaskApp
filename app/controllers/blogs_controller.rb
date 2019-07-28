@@ -1,4 +1,5 @@
 class BlogsController < ApplicationController
+  before_action :basic
   before_action :set_blog, only: %i[show edit update destroy]
 
   def index
@@ -45,6 +46,16 @@ class BlogsController < ApplicationController
 
   def blog_params
     params.require(:blog).permit(:name, :details)
+  end
+
+  def production?
+    Rails.env.production?
+  end
+
+  def basic
+    authenticate_or_request_with_http_basic do |username, password|
+      username == ENV["BASIC_AUTH_NAME"] && password == ENV["BASIC_AUTH_PASSWORD"]
+    end
   end
 end
 

@@ -12,7 +12,8 @@ ja:
     show: 詳細
     destory: 削除
     confirm: 本当によろしいですか？
-
+    sort: 終了期限でソートする
+    expired_at: 終了期限
   activerecord:
     errors:
       messages:

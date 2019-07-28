@@ -16,6 +16,7 @@
     <tr>
       <td><%= blog.name %></td>
       <td><%= blog.details %></td>
+      <td><%= blog.expired_at %></td>
       <td><%= link_to "#{t('view.show')}", blog %></td>
       <td><%= link_to "#{t('view.edit')}", edit_blog_path(blog) %></td>
       <td><%= link_to "#{t('view.destory')}", blog, method: :delete, data: { confirm: "#{t('view.confirm')}" } %></td>
@@ -26,4 +27,5 @@
 
 <br>
 
-<%= link_to "#{t('view.task_new')}", new_blog_path %>
+<%= link_to "#{t('view.task_new')}", new_blog_path %><br>
+<%= link_to "#{t('view.sort')}", blogs_path(expired_at: "true") %>

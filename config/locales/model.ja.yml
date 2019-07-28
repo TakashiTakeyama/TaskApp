@@ -6,3 +6,4 @@ ja:
       blog:
         name: タスク名
         details: 詳細
+        expired_at: 終了期限

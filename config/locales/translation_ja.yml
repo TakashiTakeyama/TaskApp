@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      blog: タスク  #g
+
+    attributes:
+      blog:
+        details: 詳細  #g
+        expired_at: 終了期限  #g
+        name: タスク名  #g
+        priority: 優先度  #g
+        state: 状態  #g

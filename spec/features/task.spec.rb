@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.feature "タスク管理機能", type: :feature do
-  # background do
-  #   FactoryBot.create(:blog)
-  #   FactoryBot.create(:second_blog)
-  #   FactoryBot.create(:third_blog)
-  # end
+  background do
+    FactoryBot.create(:blog)
+    FactoryBot.create(:second_blog)
+    FactoryBot.create(:third_blog)
+  end
 
   # scenario "タスク一覧のテスト" do
   #   Blog.create!(name: 'test_task_01', details: 'testtesttest')
@@ -46,18 +46,39 @@ RSpec.feature "タスク管理機能", type: :feature do
   #   expect(all_table_row[3]).to have_content '勉強'
   # end
 
-  it "タスクが終了期限順に表示されるテスト" do
-    Blog.create!(name: 'test_task_01', details: 'testtesttest', expired_at: Time.now)
-    Blog.create!(name: 'test_task_02', details: 'samplesample', expired_at: Time.now + 1.hour)
-    Blog.create!(name: 'test_task_03', details: 'testtesttest', expired_at: Time.now + 2.hour)
-    Blog.create!(name: 'test_task_04', details: 'samplesample', expired_at: Time.now + 3.hour)
+  # it "タスクが終了期限順に表示されるテスト" do
+  #   Blog.create!(name: 'test_task_01', details: 'testtesttest', expired_at: Time.now)
+  #   Blog.create!(name: 'test_task_02', details: 'samplesample', expired_at: Time.now + 1.hour)
+  #   Blog.create!(name: 'test_task_03', details: 'testtesttest', expired_at: Time.now + 2.hour)
+  #   Blog.create!(name: 'test_task_04', details: 'samplesample', expired_at: Time.now + 3.hour)
+  #   visit blogs_path
+  #   click_on '終了期限でソートする'
+  #   all_table_row = page.all('tr')
+  #   expect(all_table_row[1]).to have_content 'test_task_04'
+  #   expect(all_table_row[2]).to have_content 'test_task_03'
+  #   expect(all_table_row[3]).to have_content 'test_task_02'
+  #   expect(all_table_row[4]).to have_content 'test_task_01'
+  # end
+
+  it "検索が機能しているかのテスト" do
     visit blogs_path
-    click_on '終了期限でソートする'
-    all_table_row = page.all('tr')
-    expect(all_table_row[1]).to have_content 'test_task_04'
-    expect(all_table_row[2]).to have_content 'test_task_03'
-    expect(all_table_row[3]).to have_content 'test_task_02'
-    expect(all_table_row[4]).to have_content 'test_task_01'
+    fill_in 'search_field_name', with: '仕事'
+    click_on '検索する'
+    expect(page).to have_content '仕事'
+    expect(page).to_not have_content '育児'
+    expect(page).to_not have_content '勉強'
+    click_link '全件一覧'
+    select '着手中', from: 'q_state_eq'
+    click_on '検索する'
+    expect(page).to have_content '仕事'
+    expect(page).to_not have_content '育児'
+    expect(page).to_not have_content '勉強'
+    click_link '全件一覧'
+    fill_in 'search_field_name', with: '仕事'
+    select '未着手', from: 'q_state_eq'
+    click_on '検索する'
+    expect(page).to_not have_content '仕事'
+    expect(page).to_not have_content '育児'
   end
 end
 

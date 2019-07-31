@@ -7,13 +7,19 @@ ja:
     task_new: タスクを作成する
     task_edit: タスク編集
     task_show: タスク詳細
+    task_search: タスク検索
+    task_name_search: タスク名検索
+    task_state_search: タスクの状態
+    index_all: 全件一覧
     edit: 編集
     back: 戻る
     show: 詳細
+    state: 状態
     destory: 削除
     confirm: 本当によろしいですか？
     sort: 終了期限でソートする
     expired_at: 終了期限
+    search: 検索する
   activerecord:
     errors:
       messages:

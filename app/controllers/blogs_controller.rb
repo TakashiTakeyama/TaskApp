@@ -3,7 +3,10 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: %i[show edit update destroy]
 
   def index
-    if params[:expired_at].present?
+      @q = Blog.ransack(params[:q])
+    if params[:q].present?
+      @blogs = @q.result(distinct: true)
+    elsif params[:expired_at].present?
       @blogs = Blog.all.order(expired_at: :DESC)
     else
       @blogs = Blog.all
@@ -49,7 +52,7 @@ class BlogsController < ApplicationController
   end
 
   def blog_params
-    params.require(:blog).permit(:name, :details, :expired_at)
+    params.require(:blog).permit(:name, :details, :expired_at, :state)
   end
 
   def production?

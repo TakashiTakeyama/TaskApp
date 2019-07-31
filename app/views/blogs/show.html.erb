@@ -9,5 +9,10 @@
   <%= @blog.details %>
 </p>
 
+<p>
+  <strong><%= t('view.state') %></strong>
+  <%= @blog.state %>
+</p>
+
 <%= link_to "#{t('view.edit')}", edit_blog_path(@blog) %> |
 <%= link_to "#{t('view.back')}", blogs_path %>

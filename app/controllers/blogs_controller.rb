@@ -52,7 +52,7 @@ class BlogsController < ApplicationController
   end
 
   def blog_params
-    params.require(:blog).permit(:name, :details, :expired_at)
+    params.require(:blog).permit(:name, :details, :expired_at, :state)
   end
 
   def production?

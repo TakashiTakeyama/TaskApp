@@ -67,12 +67,18 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(page).to have_content '仕事'
     expect(page).to_not have_content '育児'
     expect(page).to_not have_content '勉強'
-    visit blogs_path
-    fill_in 'search_field_details', with: '打ち合わせ'
+    click_link '全件一覧'
+    select '着手中', from: 'q_state_eq'
     click_on '検索する'
-    expect(page).to have_content '打ち合わせ'
-    expect(page).to_not have_content '送り迎え'
-    expect(page).to_not have_content 'Ruby on Rails'
+    expect(page).to have_content '仕事'
+    expect(page).to_not have_content '育児'
+    expect(page).to_not have_content '勉強'
+    click_link '全件一覧'
+    fill_in 'search_field_name', with: '仕事'
+    select '未着手', from: 'q_state_eq'
+    click_on '検索する'
+    expect(page).to_not have_content '仕事'
+    expect(page).to_not have_content '育児'
   end
 end
 

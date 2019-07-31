@@ -5,8 +5,8 @@
 <%= search_form_for @q do |f| %>
   <%= f.label :name, "#{t('view.task_name_search')}" %>
   <%= f.search_field :name_cont, id: 'search_field_name' %>
-  <%= f.label :details, "#{t('view.task_details_search')}" %>
-  <%= f.search_field :details_cont, id: 'search_field_details' %>
+  <%= f.label :state, "#{t('view.task_state_search')}" %>
+  <%= f.select :state_eq, ['未着手','着手中','完了'], include_blank: "指定無し" %>
   <%= f.submit "#{t('view.search')}" %>
   <% end %>
 
@@ -25,6 +25,7 @@
       <td><%= blog.name %></td>
       <td><%= blog.details %></td>
       <td><%= blog.expired_at %></td>
+      <td><%= blog.state %></td>
       <td><%= link_to "#{t('view.show')}", blog %></td>
       <td><%= link_to "#{t('view.edit')}", edit_blog_path(blog) %></td>
       <td><%= link_to "#{t('view.destory')}", blog, method: :delete, data: { confirm: "#{t('view.confirm')}" } %></td>

@@ -8,6 +8,8 @@ class BlogsController < ApplicationController
       @blogs = @q.result(distinct: true)
     elsif params[:expired_at].present?
       @blogs = Blog.all.order(expired_at: :DESC)
+    elsif params[:priority].present?
+      @blogs = Blog.all.order(priority: :DESC)
     else
       @blogs = Blog.all
     end
@@ -52,7 +54,7 @@ class BlogsController < ApplicationController
   end
 
   def blog_params
-    params.require(:blog).permit(:name, :details, :expired_at, :state)
+    params.require(:blog).permit(:name, :details, :expired_at, :state, :priority)
   end
 
   def production?

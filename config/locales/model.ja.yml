@@ -7,3 +7,5 @@ ja:
         name: タスク名
         details: 詳細
         expired_at: 終了期限
+        state: 状態
+        priority: 優先度

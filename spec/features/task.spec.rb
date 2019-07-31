@@ -80,5 +80,18 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(page).to_not have_content '仕事'
     expect(page).to_not have_content '育児'
   end
+
+  it "優先度で並んでいるかのテスト" do
+    visit root_path
+    all_table_row = page.all('tr')
+    expect(all_table_row[1]).to have_content '仕事'
+    expect(all_table_row[2]).to have_content '育児'
+    expect(all_table_row[3]).to have_content '勉強'
+    click_link '優先度でソートする'
+    all_table_row = page.all('tr')
+    expect(all_table_row[1]).to have_content '勉強'
+    expect(all_table_row[2]).to have_content '育児'
+    expect(all_table_row[3]).to have_content '仕事'
+  end
 end
 

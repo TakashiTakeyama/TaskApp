@@ -14,12 +14,14 @@ ja:
     edit: 編集
     back: 戻る
     show: 詳細
-    state: 状態
     destory: 削除
     confirm: 本当によろしいですか？
     sort: 終了期限でソートする
+    priority_sort: 優先度でソートする
     expired_at: 終了期限
     search: 検索する
+    priority: 優先順位
+    state: 状態
   activerecord:
     errors:
       messages:

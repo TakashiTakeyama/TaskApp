@@ -1,17 +1,18 @@
 class BlogsController < ApplicationController
   # before_action :basic
   before_action :set_blog, only: %i[show edit update destroy]
+  PER = 8
 
   def index
       @q = Blog.ransack(params[:q])
     if params[:q].present?
-      @blogs = @q.result(distinct: true)
+      @blogs = @q.result(distinct: true).page(params[:page]).per(PER)
     elsif params[:expired_at].present?
-      @blogs = Blog.all.order(expired_at: :DESC)
+      @blogs = Blog.page(params[:page]).per(PER).order(expired_at: :DESC)
     elsif params[:priority].present?
-      @blogs = Blog.all.order(priority: :DESC)
+      @blogs = Blog.page(params[:page]).per(PER).order(priority: :DESC)
     else
-      @blogs = Blog.all
+      @blogs = Blog.page(params[:page]).per(PER)
     end
   end
 

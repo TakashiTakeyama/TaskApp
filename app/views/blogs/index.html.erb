@@ -2,6 +2,14 @@
 
 <h1>Tasks</h1>
 
+<%= search_form_for @q do |f| %>
+  <%= f.label :name, "#{t('view.task_name_search')}" %>
+  <%= f.search_field :name_cont, id: 'search_field_name' %>
+  <%= f.label :details, "#{t('view.task_details_search')}" %>
+  <%= f.search_field :details_cont, id: 'search_field_details' %>
+  <%= f.submit "#{t('view.search')}" %>
+  <% end %>
+
 <table>
   <thead>
   <tr>
@@ -26,6 +34,8 @@
 </table>
 
 <br>
-
 <%= link_to "#{t('view.task_new')}", new_blog_path %><br>
-<%= link_to "#{t('view.sort')}", blogs_path(expired_at: "true") %>
+<%= link_to "#{t('view.sort')}", blogs_path(expired_at: "true") %><br>
+<% if params[:q].present?%>
+  <%= link_to "#{t('view.index_all')}", blogs_path %><br>
+<% end %>

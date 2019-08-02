@@ -10,19 +10,18 @@
   <%= f.submit "#{t('view.search')}" %>
   <% end %>
 
-<div class="cotainer">
-  <table>
+<!--<div class="cotainer">-->
+  <table class="table">
     <thead>
-    <tr class="row">
-      <th class="col-md-3">duty</th>
-      <th class="col-md-3">Details</th>
-      <th class="col-md-3">expired_at</th>
-      <th class="col-md-3">state</th>
-      <th class="col-md-3">priority</th>
-      <th colspan="5"></th>
+    <tr>
+      <th>duty</th>
+      <th>Details</th>
+      <th>expired_at</th>
+      <th>state</th>
+      <th>priority</th>
+<!--      <th colspan="5"></th>-->
     </tr>
     </thead>
-
     <tbody>
     <% @blogs.each do |blog| %>
       <tr>
@@ -31,15 +30,15 @@
         <td><%= l blog.expired_at, format: :short %></td>
         <td><%= blog.state %></td>
         <td><%= blog.priority %></td>
-        <td><%= link_to "#{t('view.show')}", blog %></td>
-        <td><%= link_to "#{t('view.edit')}", edit_blog_path(blog) %></td>
-        <td><%= link_to "#{t('view.destory')}", blog, method: :delete, data: { confirm: "#{t('view.confirm')}" } %></td>
+        <td><%= link_to "#{t('view.show')}", blog, class: "btn btn-primary" %></td>
+        <td><%= link_to "#{t('view.edit')}", edit_blog_path(blog),class: "btn btn-success" %></td>
+        <td><%= link_to "#{t('view.destory')}", blog, method: :delete, data: { confirm: "#{t('view.confirm')}" },class: 'btn btn-danger' %></td>
       </tr>
     <% end %>
     <%= paginate @blogs %>
     </tbody>
   </table>
-</div>
+<!--</div>-->
 
 <br>
 <%= link_to "#{t('view.task_new')}", new_blog_path,class: 'btn btn-info' %><br>

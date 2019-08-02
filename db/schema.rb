@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_31_080825) do
+ActiveRecord::Schema.define(version: 2019_08_02_055102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,8 +20,19 @@ ActiveRecord::Schema.define(version: 2019_07_31_080825) do
     t.text "details", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.datetime "expired_at", default: "2019-07-28 19:00:50", null: false
+    t.datetime "expired_at", default: "2019-08-02 14:50:52", null: false
     t.string "state", default: "完了", null: false
     t.integer "priority", default: 0, null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_blogs_on_user_id"
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "blogs", "users"
 end

@@ -27,7 +27,8 @@ class BlogsController < ApplicationController
   end
 
   def create
-    @blog = Blog.new(blog_params)
+    # @blog = Blog.new(blog_params)
+    @blog = User.find(2).blogs.build(blog_params)
     if @blog.save
       redirect_to blog_path(@blog)
     else

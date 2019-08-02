@@ -3,6 +3,9 @@ ja:
     models:
       blog: タスク
     attributes:
+      user:
+        name: ユーザーネーム
+        email: email
       blog:
         name: タスク名
         details: 詳細

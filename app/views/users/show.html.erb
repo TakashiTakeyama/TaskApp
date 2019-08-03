@@ -9,5 +9,6 @@
   <%= @user.email %>
 </p>
 
-<%= link_to "#{t('view.edit')}", edit_user_path(@user) %> |
-<%= link_to "#{t('view.back')}", users_path %>
+<%= link_to "#{t('view.user_task')}", new_blog_path %><br>
+<%= link_to "#{t('view.edit')}", edit_user_path(@user) %>
+<%= link_to "#{t('view.back_index')}", users_path %>

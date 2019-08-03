@@ -1,6 +1,7 @@
 class BlogsController < ApplicationController
   # before_action :basic
   before_action :set_blog, only: %i[show edit update destroy]
+  before_action :only_current_user, only: %i[index show new edit]
   PER = 8
 
   def index
@@ -27,8 +28,7 @@ class BlogsController < ApplicationController
   end
 
   def create
-    # @blog = Blog.new(blog_params)
-    @blog = User.find(2).blogs.build(blog_params)
+    @blog = current_user.blogs.build(blog_params)
     if @blog.save
       redirect_to blog_path(@blog)
     else
@@ -38,7 +38,7 @@ class BlogsController < ApplicationController
 
   def update
     if @blog.update(blog_params)
-      redirect_to blogs_path, notice: "更新しました"
+      redirect_to users_path
     else
       render 'edit'
     end
@@ -46,7 +46,7 @@ class BlogsController < ApplicationController
 
   def destroy
     @blog.destroy
-      redirect_to blogs_path, notice: "削除しました"
+      redirect_to users_path
   end
 
   private
@@ -66,6 +66,13 @@ class BlogsController < ApplicationController
   def basic
     authenticate_or_request_with_http_basic do |username, password|
       username == ENV["BASIC_AUTH_NAME"] && password == ENV["BASIC_AUTH_PASSWORD"] if Rails.env == "production"
+    end
+  end
+
+  def only_current_user
+    if current_user.present?
+    else
+      redirect_to new_session_path
     end
   end
 end

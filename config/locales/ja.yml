@@ -34,6 +34,8 @@ ja:
     search: 検索する
     priority: 優先順位
     state: 状態
+    admin_index: 管理画面のユーザー一覧画面だよ！
+    admin_all_user: ユーザー一覧へ
   activerecord:
     errors:
       messages:

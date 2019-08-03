@@ -1,0 +1,14 @@
+<h3><%= t('view.user_show') %></h3>
+<p>
+  <strong><%= t('view.user_name') %></strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong><%= t('view.user_email') %></strong>
+  <%= @user.email %>
+</p>
+
+<!--<%#= link_to "#{t('view.user_task')}", new_blog_path %><br>-->
+<%= link_to "edit", edit_admin_user_path(@user) %>
+<%= link_to "#{t('view.admin_all_user')}", admin_users_path %>

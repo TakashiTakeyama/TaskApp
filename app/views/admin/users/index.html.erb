@@ -1,0 +1,41 @@
+<!--<p id="notice"><%#= notice %></p>-->
+  <%# if @users.find_by(params[:user_id]).present? %>
+<!--    <h3><%#= "#{@users.find_by(params[:user_id]).user.name}""#{t('view.index_task')}" %></h3>-->
+  <%# else %>
+<!--    <h3><%#= "#{t('view.task_nothing')}" %></h3>-->
+  <%# end %>
+<h3><%= "#{t('view.admin_index')}" %></h3>
+
+<!--<div class="cotainer">-->
+<%= link_to "#{t('view.user_new')}", new_admin_user_path, class: 'btn btn-info' %><br>
+<table class="table">
+  <thead>
+  <tr>
+    <th>id</th>
+    <th>name</th>
+    <th>created_at</th>
+    <!--      <th colspan="5"></th>-->
+  </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= user.name %></td>
+      <td><%= l user.created_at, format: :short %></td>
+      <td><%= link_to "#{t('view.show')}", admin_user_path(user), class: "btn btn-primary" %></td>
+      <td><%= link_to "#{t('view.edit')}", edit_admin_user_path(user),class: "btn btn-success" %></td>
+      <td><%= link_to "#{t('view.destory')}", admin_user_path(user), method: :delete, data: { confirm: "#{t('view.confirm')}" },class: 'btn btn-danger' %></td>
+    </tr>
+  <% end %>
+  <%#= paginate @users %>
+  </tbody>
+</table>
+<!--</div>-->
+
+<br>
+<!--<%#= link_to "#{t('view.sort')}", blogs_path(expired_at: "true"), class: 'btn btn-info' %><br>-->
+<!--<%#= link_to "#{t('view.priority_sort')}", blogs_path(priority: "true"), class: 'btn btn-info' %><br>-->
+<%# if params[:q].present?%>
+<!--  <%#= link_to "#{t('view.index_all')}", blogs_path, class: 'btn btn-default' %><br>-->
+<%# end %>

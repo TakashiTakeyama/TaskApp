@@ -13,6 +13,7 @@ ja:
     task_nothing: あなたのタスクはありません
     index_all: 全件一覧
     index_task: さんのページです
+    index_task_all: さんのタスク一覧です
     user_new: アカウントを作成する
     user_edit: アカウントを編集する
     user_name: UserName

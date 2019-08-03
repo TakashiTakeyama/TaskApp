@@ -9,4 +9,7 @@ class ApplicationController < ActionController::Base
                      request_specs: false
     g.fixture_replacement :factory_bot, dir: "spec/factories"
   end
+
+  protect_from_forgery with: :exception
+  include SessionsHelper
 end

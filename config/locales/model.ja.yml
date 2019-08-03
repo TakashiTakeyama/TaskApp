@@ -6,6 +6,8 @@ ja:
       user:
         name: ユーザーネーム
         email: email
+        password: パスワード
+        password_confirmation: 確認用パスワード
       blog:
         name: タスク名
         details: 詳細

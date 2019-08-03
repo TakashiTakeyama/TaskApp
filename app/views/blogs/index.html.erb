@@ -23,7 +23,7 @@
     </tr>
     </thead>
     <tbody>
-    <% @blogs.each do |blog| %>
+    <% @users.each do |blog| %>
       <tr>
         <td><%= blog.name %></td>
         <td><%= blog.details %></td>
@@ -35,7 +35,7 @@
         <td><%= link_to "#{t('view.destory')}", blog, method: :delete, data: { confirm: "#{t('view.confirm')}" },class: 'btn btn-danger' %></td>
       </tr>
     <% end %>
-    <%= paginate @blogs %>
+    <%= paginate @users %>
     </tbody>
   </table>
 <!--</div>-->

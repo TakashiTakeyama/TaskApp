@@ -14,7 +14,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    binding.pry
     if current_user.id == @user.id
     else
       redirect_to new_user_path, notice: "その行為は禁止されています。"

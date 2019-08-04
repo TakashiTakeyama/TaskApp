@@ -74,7 +74,7 @@
 <!--</div>-->
 
 <br>
-<% if nil == @user %>
+<% if @user.present? %>
 <% else %>
   <%= link_to "#{t('view.task_new')}", new_blog_path,class: 'btn btn-info' %><br>
 <% end %>

@@ -74,7 +74,10 @@
 <!--</div>-->
 
 <br>
-<%= link_to "#{t('view.task_new')}", new_blog_path,class: 'btn btn-info' %><br>
+<% if @user.present? %>
+<% else %>
+  <%= link_to "#{t('view.task_new')}", new_blog_path,class: 'btn btn-info' %><br>
+<% end %>
 <!--<%#= link_to "#{t('view.sort')}", blogs_path(expired_at: "true"), class: 'btn btn-info' %><br>-->
 <!--<%#= link_to "#{t('view.priority_sort')}", blogs_path(priority: "true"), class: 'btn btn-info' %><br>-->
 <%# if params[:q].present?%>

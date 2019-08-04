@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
-  before_action :only_current_user, only: %i[index show edit]
+  before_action :only_current_user, only: %i[show edit]
 
   def index
     @users = User.find(current_user.id).blogs

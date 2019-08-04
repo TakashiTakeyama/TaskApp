@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
+  before_action :only_adminuser, only: %i[index new edit destroy]
 
   def index
     @users = User.all.includes(:blogs)
@@ -33,8 +34,13 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    redirect_to admin_users_path, notice: "削除しました"
+    if @user.destroy
+      redirect_to admin_users_path
+      flash[:notice] = '削除しました'
+    else
+      redirect_to admin_users_path
+      flash[:danger] = '管理者権限を持つユーザーを0人にすることは出来ません'
+    end
   end
 
   private
@@ -44,7 +50,14 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :administrator)
+  end
+
+  def only_adminuser
+    if current_user.present? && current_user.administrator == true
+    else
+      redirect_to new_user_path, notice: "その行為は禁止されています"
+    end
   end
 
 end

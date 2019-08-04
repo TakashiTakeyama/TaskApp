@@ -54,10 +54,10 @@ class Admin::UsersController < ApplicationController
   end
 
   def only_adminuser
-    if current_user.present? && current_user.administrator == true
-    else
-      redirect_to new_user_path, notice: "その行為は禁止されています"
+    begin
+      redirect_to new_user_path if current_user.present? && current_user.administrator != true
+    rescue => e
+      logger.error e
     end
   end
-
 end

@@ -9,14 +9,17 @@ class UsersController < ApplicationController
 
   def index
     @q = Blog.ransack(params[:q])
+    # binding.pry
     if params[:q].present?
       @users = @q.result(distinct: true).page(params[:page]).per(7)
+      # binding.pry
     elsif params[:expired_at].present?
       @users = User.find(current_user.id).blogs.page(params[:page]).per(7).order(expired_at: :DESC)
     elsif params[:priority].present?
       @users = User.find(current_user.id).blogs.page(params[:page]).per(7).order(priority: :DESC)
     else
       @users = User.find(current_user.id).blogs.page(params[:page]).per(7)
+      # binding.pry
     end
     # binding.pry
   end

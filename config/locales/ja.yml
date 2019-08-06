@@ -22,6 +22,7 @@ ja:
     label_new: ラベルを作成する
     label_index: ラベル一覧
     label_name: ラベル名
+    have_labels: ラベル
     profile: プロフィール
     logout: ログアウト
     account: アカウントを作成します

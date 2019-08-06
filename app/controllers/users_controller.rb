@@ -2,8 +2,23 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
   before_action :only_current_user, only: %i[show edit]
 
+  # def index
+  #   @users = User.find(current_user.id).blogs
+  #   # binding.pry
+  # end
+
   def index
-    @users = User.find(current_user.id).blogs
+    @q = Blog.ransack(params[:q])
+    if params[:q].present?
+      @users = @q.result(distinct: true).page(params[:page]).per(7)
+    elsif params[:expired_at].present?
+      @users = User.find(current_user.id).blogs.page(params[:page]).per(7).order(expired_at: :DESC)
+    elsif params[:priority].present?
+      @users = User.find(current_user.id).blogs.page(params[:page]).per(7).order(priority: :DESC)
+    else
+      @users = User.find(current_user.id).blogs.page(params[:page]).per(7)
+    end
+    # binding.pry
   end
 
   def new

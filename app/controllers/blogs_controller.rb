@@ -22,6 +22,8 @@ class BlogsController < ApplicationController
 
   def new
     @blog = Blog.new
+    @blog.labelings.build
+    # binding.pry
   end
 
   def edit
@@ -56,7 +58,14 @@ class BlogsController < ApplicationController
   end
 
   def blog_params
-    params.require(:blog).permit(:name, :details, :expired_at, :state, :priority)
+    params.require(:blog).permit(:name, :details, :expired_at, :state, :priority, label_ids:[])
+                                 # labels_attributes: [
+                                 #   :id,
+                                 #   :label_name,
+                                 #   :_destroy,
+                                 #   label_ids: []
+                                 # ]
+    # )
   end
 
   def production?

@@ -35,13 +35,13 @@
     <h3><%= "#{t('view.task_nothing')}" %></h3>
   <% end %>
 
-<%#= search_form_for @q do |f| %>
-  <%#= f.label :name, "#{t('view.task_name_search')}" %>
-  <%#= f.search_field :name_cont, id: 'search_field_name' %>
-  <%#= f.label :state, "#{t('view.task_state_search')}" %>
-  <%#= f.select :state_eq, ['未着手','着手中','完了'], include_blank: "指定無し" %>
-  <%#= f.submit "#{t('view.search')}" %>
-<%# end %>
+<%= search_form_for @q, url: users_path do |f| %>
+  <%= f.label :name, "#{t('view.task_name_search')}" %>
+  <%= f.search_field :name_cont, id: 'search_field_name' %>
+  <%= f.label :state, "#{t('view.task_state_search')}" %>
+  <%= f.select :state_eq, ['未着手','着手中','完了'], include_blank: "指定無し" %>
+  <%= f.submit "#{t('view.search')}" %>
+<% end %>
 
 <!--<div class="cotainer">-->
 <table class="table">
@@ -52,6 +52,8 @@
     <th>expired_at</th>
     <th>state</th>
     <th>priority</th>
+    <th>labels</th>
+
     <!--      <th colspan="5"></th>-->
   </tr>
   </thead>
@@ -63,12 +65,15 @@
       <td><%= l blog.expired_at, format: :short %></td>
       <td><%= blog.state %></td>
       <td><%= blog.priority %></td>
+      <% blog.labelings.each do |labeling| %>
+        <td align="left"><%= labeling.label.label_name %></td>
+      <% end %>
       <td><%= link_to "#{t('view.show')}", blog, class: "btn btn-primary" %></td>
       <td><%= link_to "#{t('view.edit')}", edit_blog_path(blog),class: "btn btn-success" %></td>
       <td><%= link_to "#{t('view.destory')}", blog, method: :delete, data: { confirm: "#{t('view.confirm')}" },class: 'btn btn-danger' %></td>
     </tr>
   <% end %>
-  <%#= paginate @users %>
+  <%= paginate @users %>
   </tbody>
 </table>
 <!--</div>-->
@@ -78,8 +83,8 @@
 <% else %>
   <%= link_to "#{t('view.task_new')}", new_blog_path,class: 'btn btn-info' %><br>
 <% end %>
-<!--<%#= link_to "#{t('view.sort')}", blogs_path(expired_at: "true"), class: 'btn btn-info' %><br>-->
-<!--<%#= link_to "#{t('view.priority_sort')}", blogs_path(priority: "true"), class: 'btn btn-info' %><br>-->
-<%# if params[:q].present?%>
-<!--  <%#= link_to "#{t('view.index_all')}", blogs_path, class: 'btn btn-default' %><br>-->
-<%# end %>
+<%= link_to "#{t('view.sort')}", users_path(expired_at: "true"), class: 'btn btn-info' %><br>
+<%= link_to "#{t('view.priority_sort')}", users_path(priority: "true"), class: 'btn btn-info' %><br>
+<% if params[:q].present?%>
+  <%= link_to "#{t('view.index_all')}", users_path, class: 'btn btn-default' %><br>
+<% end %>

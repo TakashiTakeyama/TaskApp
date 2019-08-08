@@ -5,15 +5,28 @@ class BlogsController < ApplicationController
   PER = 8
 
   def index
-      @q = Blog.ransack(params[:q])
-    if params[:q].present?
-      @blogs = @q.result(distinct: true).page(params[:page]).per(7)
-    elsif params[:expired_at].present?
-      @blogs = Blog.page(params[:page]).per(7).order(expired_at: :DESC)
-    elsif params[:priority].present?
-      @blogs = Blog.page(params[:page]).per(7).order(priority: :DESC)
+    if current_user.present?
+        @q = current_user.blogs.ransack(params[:q])
+      if params[:q].present? && current_user.present?
+        @blogs = @q.result(distinct: true).page(params[:page]).per(7)
+      elsif params[:expired_at].present?
+        @blogs = current_user.blogs.page(params[:page]).per(7).order(expired_at: :DESC)
+      elsif params[:priority].present?
+        @blogs = current_user.blogs.page(params[:page]).per(7).order(priority: :DESC)
+      else
+        @blogs = current_user.blogs.page(params[:page]).per(7)
+      end
     else
-      @blogs = Blog.page(params[:page]).per(7)
+        @q = Blog.ransack(params[:q])
+      if params[:q].present?
+        @blogs = @q.result(distinct: true).page(params[:page]).per(7)
+      elsif params[:expired_at].present?
+        @blogs = Blog.page(params[:page]).per(7).order(expired_at: :DESC)
+      elsif params[:priority].present?
+        @blogs = Blog.page(params[:page]).per(7).order(priority: :DESC)
+      else
+        @blogs = Blog.page(params[:page]).per(7)
+      end
     end
   end
 

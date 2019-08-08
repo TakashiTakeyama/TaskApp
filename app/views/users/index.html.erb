@@ -40,10 +40,16 @@
   <%= f.search_field :name_cont, id: 'search_field_name' %>
   <%= f.label :state, "#{t('view.task_state_search')}" %>
   <%= f.select :state_eq, ['未着手','着手中','完了'], include_blank: "指定無し" %>
-  <%= f.label :label_name, "#{t('view.have_labels')}" %>
-  <%#= f.select :label_name_eq,['fakf','fjkads','fakdsj'], include_blank: "ラベル無し" %>
+  <%= f.label :label_id, "#{t('view.label_name')}" %>
+  <%= f.select :labels_id_eq, Label.all.map{|label| [ label.label_name ] }, include_blank: "指定無し" %>
   <%= f.submit "#{t('view.search')}" %>
 <% end %>
+
+<%#= search_form_for @l, url: users_path do |f| %>
+  <%#= f.label :label_name, "#{t('view.have_labels')}" %>
+  <%#= f.select :label_name_eq,['トレーニング'], include_blank: "ラベル無し" %>
+  <%#= f.submit "#{t('view.search')}" %>
+<%# end %>
 
 <!--<div class="cotainer">-->
 <table class="table">
@@ -55,7 +61,6 @@
     <th>state</th>
     <th>priority</th>
     <th>labels</th>
-
     <!--      <th colspan="5"></th>-->
   </tr>
   </thead>
@@ -81,7 +86,7 @@
 <!--</div>-->
 
 <br>
-<% if @user.present? %>
+<% if @users.present? %>
 <% else %>
   <%= link_to "#{t('view.task_new')}", new_blog_path,class: 'btn btn-info' %><br>
 <% end %>

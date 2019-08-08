@@ -15,8 +15,8 @@ RSpec.feature "タスク管理機能", type: :feature do
   end
 
   it "ログインしていないのにタスクのページに飛ぼうとした場合エラーが出るかどうか" do
-    visit users_path
-    expect(page).to have_content 'ログインしてください'
+    visit blogs_path
+    expect(page).to have_content 'ログイン'
   end
 
   it "自分が作成したタスクだけを表示しているかどうかのテストとログイン機能の実装テスト" do
@@ -30,7 +30,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     click_on 'タスク一覧へ'
     expect(page).to have_content 'あなたのタスクはありません'
     click_on 'タスクを作成する'
-    fill_in 'タスク名', with: '勉強'
+    fill_in 'ラベル名', with: '勉強'
     fill_in '詳細', with: 'rails'
     click_on '登録する'
     expect(page).to have_content '勉強'

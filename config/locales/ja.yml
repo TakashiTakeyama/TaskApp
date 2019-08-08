@@ -1,7 +1,7 @@
 ---
 ja:
   view:
-    name: タスク名
+    name1: タスク名
     details: 詳細
     error: 件のエラーがあります
     task_new: タスクを作成する

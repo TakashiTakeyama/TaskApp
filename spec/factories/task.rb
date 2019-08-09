@@ -8,12 +8,10 @@ FactoryBot.define do
   end
 
   factory :second_blog, class: Blog do
-    # id { 1 }
     name { '育児' }
     details { '送り迎え' }
     state { '未着手' }
     priority { '中' }
-    user_id { 1 }
   end
 
   factory :third_blog, class: Blog do
@@ -21,6 +19,5 @@ FactoryBot.define do
     details { 'Ruby on Rails '}
     state { '完了' }
     priority { '高' }
-    user_id { 2 }
   end
 end

@@ -94,6 +94,29 @@ RSpec.feature "タスク管理機能", type: :feature do
   #   expect(all_table_row[3]).to have_content '仕事'
   # end
 
+  it "タスクに複数のラベルを複数つけられる事の確認テスト" do
+    FactoryBot.create(:second_user)
+    FactoryBot.create(:second_label)
+    FactoryBot.create(:third_label)
+    FactoryBot.create(:forth_label)
+    visit new_session_path
+    fill_in 'session_email', with: 'jirou@gmail.com'
+    fill_in 'Password', with: 'bbbbbb'
+    click_on 'Log in'
+    click_on 'タスクを作成する'
+    fill_in 'タスク名', with: 'タスク名1'
+    fill_in '詳細', with: 'タスク詳細1'
+    check 'blog_label_ids_1'
+    check 'blog_label_ids_2'
+    check 'blog_label_ids_3'
+    click_on '登録する'
+    click_on '戻る'
+    all_table_row = page.all('tr')
+    expect(all_table_row[1]).to have_content 'test1'
+    expect(all_table_row[1]).to have_content 'test2'
+    expect(all_table_row[1]).to have_content 'test3'
+  end
+
   it "ラベルで検索機能の動作確認テスト" do
     FactoryBot.create(:second_user)
     FactoryBot.create(:second_label)
@@ -105,13 +128,14 @@ RSpec.feature "タスク管理機能", type: :feature do
     click_on 'タスクを作成する'
     fill_in 'タスク名', with: 'タスク名1'
     fill_in '詳細', with: 'タスク詳細1'
-    check 'blog_label_ids_1'
+    # save_and_open_page
+    check 'blog_label_ids_4'
     click_on '登録する'
     click_on '戻る'
     click_on 'タスクを作成する'
     fill_in 'タスク名', with: 'タスク名2'
     fill_in '詳細', with: 'タスク詳細2'
-    check 'blog_label_ids_2'
+    check 'blog_label_ids_5'
     click_on '登録する'
     visit  blogs_path
     all_table_row = page.all('tr')
@@ -120,7 +144,6 @@ RSpec.feature "タスク管理機能", type: :feature do
     click_on '検索する'
     all_table_row = page.all('tr')
     expect(all_table_row[1]).to have_content 'test2'
-    # save_and_open_page
   end
 end
 

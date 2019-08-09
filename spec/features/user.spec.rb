@@ -30,7 +30,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     click_on 'タスク一覧へ'
     expect(page).to have_content 'あなたのタスクはありません'
     click_on 'タスクを作成する'
-    fill_in 'ラベル名', with: '勉強'
+    fill_in 'タスク名', with: '勉強'
     fill_in '詳細', with: 'rails'
     click_on '登録する'
     expect(page).to have_content '勉強'

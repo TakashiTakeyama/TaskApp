@@ -43,3 +43,4 @@ gem 'ransack'
 gem 'kaminari'
 gem 'faker'
 gem 'bcrypt'
+

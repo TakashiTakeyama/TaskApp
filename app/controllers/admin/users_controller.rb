@@ -1,9 +1,10 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
   before_action :only_adminuser, only: %i[index new edit destroy]
+  PER = 8
 
   def index
-    @users = User.all.includes(:blogs)
+    @users = User.all.page(params[:page]).per(PER)
   end
 
   def new

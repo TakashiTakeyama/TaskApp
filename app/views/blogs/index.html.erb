@@ -18,7 +18,7 @@
   <%= f.submit "#{t('view.search')}" %>
   <% end %>
 
-<!--<div class="cotainer">-->
+<div class="cotainer" id="index">
   <table class="table">
     <thead>
     <tr>
@@ -50,7 +50,6 @@
     <%= paginate @blogs %>
     </tbody>
   </table>
-<!--</div>-->
 
 <br>
 <%= link_to "#{t('view.task_new')}", new_blog_path,class: 'btn btn-info' %><br>
@@ -60,3 +59,4 @@
 <% if params[:q].present?%>
   <%= link_to "#{t('view.index_all')}", blogs_path, class: 'btn btn-default' %><br>
 <% end %>
+</div>

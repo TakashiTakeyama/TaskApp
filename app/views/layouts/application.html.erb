@@ -9,33 +9,45 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <header>
-    <ul>
-      <li>
-        <a>TaskManagementSystem</a>
-      </li>
-    </ul>
+  <nav class="navbar">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">TaskApp</a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarEexample">
+        <ul class="nav navbar-nav">
+        <% if logged_in? && current_user.administrator == true %>
+            <li class="active"><%= link_to "#{t('view.profile')}", user_path(current_user.id) %></li>
+            <li><%= link_to "#{t('view.logout')}", session_path(current_user.id), method: :delete %></li>
+            <li><%= link_to "#{t('view.admin_index')}", admin_users_path %></li>
+        <% elsif logged_in? %>
+            <li><%= link_to "#{t('view.profile')}", user_path(current_user.id) %></li>
+            <li><%= link_to "#{t('view.logout')}", session_path(current_user.id), method: :delete %></li>
+        <% else %>
+            <li><%= link_to "#{t('view.account')}", new_user_path %></li>
+            <li><%= link_to "#{t('view.login')}", new_session_path %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
   </header>
   <body>
-    <div class="wrapper">
-      <% flash.each do |key, value| %>
-        <%= content_tag(:div, value, class: "#{key}") %>
-      <% end %>
-
-      <% if logged_in? && current_user.administrator == true %>
-        <%= link_to "#{t('view.profile')}", user_path(current_user.id) %>
-        <%= link_to "#{t('view.logout')}", session_path(current_user.id), method: :delete %>
-        <%= link_to "#{t('view.admin_index')}", admin_users_path %>
-      <% elsif logged_in? %>
-        <%= link_to "#{t('view.profile')}", user_path(current_user.id) %>
-        <%= link_to "#{t('view.logout')}", session_path(current_user.id), method: :delete %>
-      <% else %>
-        <%= link_to "#{t('view.account')}", new_user_path %>
-        <%= link_to "#{t('view.login')}", new_session_path %>
-      <% end %>
-        <%= yield %>
-      <footer>
-        <p>© 2019 Copyright TAKASHI TAKEYAMA Corp.</p>
-      </footer>
-    </div>
+  <div class="wrapper">
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+    <% end %>
+    <%= yield %>
+    <footer>
+      <p>© 2019 Copyright TAKASHI TAKEYAMA Corp.</p>
+    </footer>
+  </div>
   </body>
 </html>
+

@@ -7,7 +7,7 @@
 <h3><%= "#{t('view.management')}" %></h3>
 
 <!--<div class="cotainer">-->
-<%= link_to "#{t('view.user_new')}", new_admin_user_path, class: 'btn btn-info' %><br>
+<%= link_to "#{t('view.user_new')}", new_admin_user_path, class: "btn btn-info btn-lg" %><br>
 <table class="table">
   <thead>
   <tr>
@@ -32,7 +32,7 @@
       <td><%= link_to "#{t('view.destory')}", admin_user_path(user), method: :delete, data: { confirm: "#{t('view.confirm')}" },class: 'btn btn-danger' %></td>
     </tr>
   <% end %>
-  <%#= paginate @users %>
+  <%= paginate @users %>
   </tbody>
 </table>
 <!--</div>-->

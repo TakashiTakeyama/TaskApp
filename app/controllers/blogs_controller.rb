@@ -81,15 +81,15 @@ class BlogsController < ApplicationController
     # )
   end
 
-  def production?
-    Rails.env.production?
-  end
+  # def production?
+  #   Rails.env.production?
+  # end
 
-  def basic
-    authenticate_or_request_with_http_basic do |username, password|
-      username == ENV["BASIC_AUTH_NAME"] && password == ENV["BASIC_AUTH_PASSWORD"] if Rails.env == "production"
-    end
-  end
+  # def basic
+  #   authenticate_or_request_with_http_basic do |username, password|
+  #     username == ENV["BASIC_AUTH_NAME"] && password == ENV["BASIC_AUTH_PASSWORD"] if Rails.env == "production"
+  #   end
+  # end
 
   def only_current_user
     if current_user.present?

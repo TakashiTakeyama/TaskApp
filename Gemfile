@@ -43,4 +43,4 @@ gem 'ransack'
 gem 'kaminari'
 gem 'faker'
 gem 'bcrypt'
-
+gem 'rails_12factor', group: :production

@@ -36,9 +36,26 @@
     <%= form.select :priority, Blog.priorities.keys.to_a, {},  include_blank: "指定無し" %>
   </div>
 
+  <% Label.all.each do |label| %>
+    <% if  label.user_id.nil? %>
+      <%= form.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+    <label><%= label.label_name %></label>
+    <% end %>
+
+    <% if label.user_id == current_user.id %>
+      <%= form.check_box :label_ids, { multipie: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+      <label><%= label.label_name %></label>
+    <% end %>
+  <% end %>
+
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
 
-<%= link_to "#{t('view.back')}", users_path %>
+<%= link_to "#{t('view.back')}", blogs_path %>
+
+<%# Label.all.each do |label| %>
+  <%#= form.check_box :label_ids, { multiple: true, checked: @task.labels.find_by(id: label.id).present?, include_hidden: false }, label[:id] %>
+<!--  <label class='badge badge-secondary'><%#= label.name %></label>-->
+<%# end %>

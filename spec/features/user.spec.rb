@@ -15,8 +15,8 @@ RSpec.feature "タスク管理機能", type: :feature do
   end
 
   it "ログインしていないのにタスクのページに飛ぼうとした場合エラーが出るかどうか" do
-    visit users_path
-    expect(page).to have_content 'ログインしてください'
+    visit blogs_path
+    expect(page).to have_content 'ログイン'
   end
 
   it "自分が作成したタスクだけを表示しているかどうかのテストとログイン機能の実装テスト" do

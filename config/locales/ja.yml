@@ -1,7 +1,7 @@
 ---
 ja:
   view:
-    name: タスク名
+    name1: タスク名
     details: 詳細
     error: 件のエラーがあります
     task_new: タスクを作成する
@@ -19,6 +19,10 @@ ja:
     user_name: UserName
     user_email: UserEmail
     user_task: タスクを作成する
+    label_new: ラベルを作成する
+    label_index: ラベル一覧
+    label_name: ラベル名
+    have_labels: ラベル
     profile: プロフィール
     logout: ログアウト
     account: アカウントを作成します

@@ -2,6 +2,7 @@ class User < ApplicationRecord
   before_validation { email.downcase! }
   before_destroy :last_one_administrator
   has_many :blogs, dependent: :destroy
+  has_many :labels, dependent: :destroy
   validates :name, presence: true, length: { maximum: 30 }
   validates :email, presence: true, length: { maximum: 255 }, uniqueness: true,
             format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }

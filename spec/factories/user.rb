@@ -8,7 +8,6 @@ FactoryBot.define do
   end
 
   factory :second_user, class: User do
-    id {'1'}
     name { '鈴木二郎' }
     email { 'jirou@gmail.com' }
     password { 'bbbbbb' }
@@ -16,7 +15,6 @@ FactoryBot.define do
   end
 
   factory :third_user, class: User do
-    id {'2'}
     name { '鈴木三郎'}
     email { 'saburou@gmail.com'}
     password { 'cccccc' }

@@ -14,3 +14,5 @@ ja:
         expired_at: 終了期限
         state: 状態
         priority: 優先度
+      label:
+        label_name: ラベル名

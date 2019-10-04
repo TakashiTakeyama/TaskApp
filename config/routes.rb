@@ -7,4 +7,6 @@ Rails.application.routes.draw do
     resources :users
   end
   resources :users
+  resources :labelings
+  resources :labels
 end

@@ -1,0 +1,25 @@
+<%= form_with(model:@label, local: true) do |label| %>
+  <% if @label.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@label.errors.count, "#{t('view.error')}") %></h2>
+
+      <ul>
+        <% @label.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= label.label :label_name %>
+    <%= label.text_field :label_name %>
+  </div>
+
+  <div class="actions">
+    <%= label.submit %>
+  </div>
+<% end %>
+
+<%= link_to "#{t('view.back_index')}", blogs_path %><br>
+

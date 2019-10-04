@@ -1,0 +1,23 @@
+<h3><%= t('view.label_index') %></h3>
+
+<!--<div class="cotainer">-->
+<table class="table">
+  <thead>
+  <tr>
+    <th><%= t('view.label_name') %></th>
+    <!--      <th colspan="5"></th>-->
+  </tr>
+  </thead>
+  <tbody>
+  <% @labels.each do |label| %>
+    <tr>
+      <td><%= label.label_name %></td>
+      <td><%= link_to "#{t('view.destory')}", label, method: :delete, data: { confirm: "#{t('view.confirm')}" },class: 'btn btn-danger' %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<!--</div>-->
+
+<br>
+<%= link_to "#{t('view.label_new')}", new_label_path,class: 'btn btn-info' %><br>

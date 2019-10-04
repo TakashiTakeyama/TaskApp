@@ -26,7 +26,7 @@ ul{
 .contents li{
   background-color:#F3A7AB;
   color:#fff;
-  padding:10% 10%;
+  //padding:10% 10%;
   box-sizing: border-box;
   border: solid 1px #fff;
 }
@@ -39,9 +39,13 @@ ul{
   padding-bottom: 100px;
 }
 
+.container #index {
+  background-color: white;
+}
+
 footer {
   width: 100%;
-  background-color:#2c3e50;
+  background-color:#ea5549;
   padding: 20px 0 10px 0;
   color: white;
   margin: auto;
@@ -52,15 +56,10 @@ footer {
   margin-top: auto;
 }
 
-footer {
-  position: absolute; /*←絶対位置*/
-  bottom: 0; /*下に固定*/
-}
-
 header {
-  width: 100%;
-  background-color: #2c3e50;
-  height: 54px;
+  //width: 100%;
+  //background-color: #2c3e50;
+  //height: 70px;
 }
 
 header ul {
@@ -70,10 +69,10 @@ header ul {
 
 header ul a {
   display: block;
-  padding: 15px;
+  //padding: 15px;
   text-decoration: none;
-  color: white;
-  font-size: large;
+  //color: white;
+  font-size: 20px;
   font-family: "American Typewriter";
 }
 
@@ -96,6 +95,11 @@ h3 {
 body {
   background: #f2f2f2;
   background-image: image_url("business-3190209_1920.jpg");
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 }
 
 .box {
@@ -126,5 +130,53 @@ body {
   border-radius: 10px;
   padding: 60px 10px;
   //margin: 30px 0px;
+}
+
+#index {
+  //background-color: white;
+}
+
+ul{
+  display: table;
+  margin: 0 auto;
+  padding: 0;
+  width: 80%;
+  text-align: center;
+}
+
+ul li{
+  display: table-cell;
+  min-width: 50px;
+}
+
+ul li a{
+  display: block;
+  width: 100%;
+  //padding: 10px 0;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+ul li.current{
+  border: 3px solid #555;
+}
+
+ul li.current a{
+  color: #555;
+}
+
+ul li a:hover{
+  //color: #E71B1F;
+}
+
+.navbar {
+  background-color: #ea5549	;
+  //height: 70px;
+}
+
+.navbar-brand {
+  font-size: 25px;
+  color: white;
 }
 

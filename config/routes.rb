@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-  root to: 'blogs#index'
+  root to: 'sessions#new'
+  # get 'sessions/new'
   resources :blogs
   resources :sessions
   namespace :admin do

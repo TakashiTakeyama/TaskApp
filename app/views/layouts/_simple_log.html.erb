@@ -1,0 +1,5 @@
+<%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+  <%= f.hidden_field :email, value: "guest@guest.com" %>
+  <%= f.hidden_field :password, value: "guest123" %>
+  <%= button_tag sanitize('簡単ログイン'), class: "btn btn-success guest-btn" %>
+<% end %>

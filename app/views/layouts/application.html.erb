@@ -8,7 +8,6 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <header>
     <ul>
       <li>
@@ -16,7 +15,6 @@
       </li>
     </ul>
   </header>
-
   <body>
     <div class="wrapper">
       <% flash.each do |key, value| %>
@@ -35,7 +33,6 @@
         <%= link_to "#{t('view.login')}", new_session_path %>
       <% end %>
         <%= yield %>
-
       <footer>
         <p>© 2019 Copyright TAKASHI TAKEYAMA Corp.</p>
       </footer>

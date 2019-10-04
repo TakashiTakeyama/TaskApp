@@ -77,8 +77,8 @@ header ul a {
   font-family: "American Typewriter";
 }
 
-body {
-  background-color: #EFEFEF;
+.input-group {
+  text-align: center;
 }
 
 table {
@@ -92,3 +92,39 @@ td {
 h3 {
   font-family: 'Impact';
 }
+
+body {
+  background: #f2f2f2;
+  background-image: url("business-3190209_1920.jpg");
+}
+
+.box {
+  padding: 60px 0px;
+}
+
+.box-part {
+  background: #FFF;
+  border-radius: 10px;
+  padding: 60px 10px;
+  margin: 30px 0px;
+}
+
+.text {
+  margin: 20px 0px;
+}
+
+.fa {
+  color: #4183D7;
+}
+
+.card-size {
+  width: 400px;
+  //background-color: white;
+  margin-right: auto;
+  margin-left: auto;
+  background: #FFF;
+  border-radius: 10px;
+  padding: 60px 10px;
+  //margin: 30px 0px;
+}
+

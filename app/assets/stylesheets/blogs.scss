@@ -1,6 +1,8 @@
 // Place all the styles related to the blogs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
 
 li{
   list-style:none;
@@ -178,5 +180,13 @@ ul li a:hover{
 .navbar-brand {
   font-size: 25px;
   color: white;
+}
+
+.container input[type="submit"] {
+  height: 45px;
+  font-size: 20px;
+  background-color: #f55e55;
+  border: none;
+  color: #fff;
 }
 

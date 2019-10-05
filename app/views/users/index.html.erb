@@ -1,97 +1,56 @@
 <!--<p id="notice"><%#= notice %></p>-->
-
 <!--<h3>UserIndex</h3>-->
-
-<!--<table class="table">-->
-<!--  <thead>-->
-<!--  <tr>-->
-<!--    <th>name</th>-->
-<!--    <th>email</th>-->
-    <!--      <th colspan="5"></th>-->
-<!--  </tr>-->
-<!--  </thead>-->
-<!--  <tbody>-->
-  <%# @users.each do |user| %>
-<!--    <tr>-->
-<!--      <td><%#= user.name %></td>-->
-<!--      <td><%#= user.email %></td>-->
-<!--      <td><%#= link_to "#{t('view.show')}", user, class: "btn btn-primary" %></td>-->
-<!--      <td><%#= link_to "#{t('view.edit')}", edit_user_path(user),class: "btn btn-success" %></td>-->
-<!--      <td><%#= link_to "#{t('view.destory')}", user, method: :delete, data: { confirm: "#{t('view.confirm')}" },class: 'btn btn-danger' %></td>-->
-<!--    </tr>-->
-  <%# end %>
-<!--  </tbody>-->
-<!--</table>-->
-<!--</div>-->
-
-
-<!--<br>-->
-<!--<%#= link_to "#{t('view.user_new')}", new_user_path,class: 'btn btn-info' %><br>-->
-
 <p id="notice"><%= notice %></p>
-  <% if @users.find_by(params[:user_id]).present? %>
-    <h3><%= "#{@users.find_by(params[:user_id]).user.name}""#{t('view.index_task')}" %></h3>
-  <% else %>
-    <h3><%= "#{t('view.task_nothing')}" %></h3>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <% if @users.find_by(params[:user_id]).present? %>
+      <h3><%= "#{@users.find_by(params[:user_id]).user.name}""#{t('view.index_task')}" %></h3>
+    <% else %>
+      <h3><%= "#{t('view.task_nothing')}" %></h3>
+    <% end %>
+    <div class="panel-body">
+      <%= paginate @users %>
+  </div>
+  <%= search_form_for @q, url: users_path do |f| %>
+    <%= f.label :name, "#{t('view.task_name_search')}" %>
+    <%= f.search_field :name_cont, id: 'search_field_name' %>
+    <%= f.label :state, "#{t('view.task_state_search')}" %>
+    <%= f.select :state_eq, ['未着手','着手中','完了'], include_blank: "指定無し" %>
+    <%= f.label :label_id, "#{t('view.label_name')}" %>
+    <%= f.select :labels_id_eq, Label.all.map{|label| [ label.label_name ] }, include_blank: "指定無し" %>
+    <%= f.submit "#{t('view.search')}" %>
   <% end %>
-
-<%= search_form_for @q, url: users_path do |f| %>
-  <%= f.label :name, "#{t('view.task_name_search')}" %>
-  <%= f.search_field :name_cont, id: 'search_field_name' %>
-  <%= f.label :state, "#{t('view.task_state_search')}" %>
-  <%= f.select :state_eq, ['未着手','着手中','完了'], include_blank: "指定無し" %>
-  <%= f.label :label_id, "#{t('view.label_name')}" %>
-  <%= f.select :labels_id_eq, Label.all.map{|label| [ label.label_name ] }, include_blank: "指定無し" %>
-  <%= f.submit "#{t('view.search')}" %>
-<% end %>
-
-<%#= search_form_for @l, url: users_path do |f| %>
-  <%#= f.label :label_name, "#{t('view.have_labels')}" %>
-  <%#= f.select :label_name_eq,['トレーニング'], include_blank: "ラベル無し" %>
-  <%#= f.submit "#{t('view.search')}" %>
-<%# end %>
-
-<!--<div class="cotainer">-->
-<table class="table">
-  <thead>
-  <tr>
-    <th>duty</th>
-    <th>Details</th>
-    <th>expired_at</th>
-    <th>state</th>
-    <th>priority</th>
-    <th>labels</th>
-    <!--      <th colspan="5"></th>-->
-  </tr>
-  </thead>
-  <tbody>
-  <% @users.each do |blog| %>
-    <tr>
-      <td><%= blog.name %></td>
-      <td><%= blog.details %></td>
-      <td><%= l blog.expired_at, format: :short %></td>
-      <td><%= blog.state %></td>
-      <td><%= blog.priority %></td>
-      <% blog.labelings.each do |labeling| %>
-        <td><%= labeling.label.label_name %></td>
-      <% end %>
-      <td><%= link_to "#{t('view.show')}", blog, class: "btn btn-primary" %></td>
-      <td><%= link_to "#{t('view.edit')}", edit_blog_path(blog),class: "btn btn-success" %></td>
-      <td><%= link_to "#{t('view.destory')}", blog, method: :delete, data: { confirm: "#{t('view.confirm')}" },class: 'btn btn-danger' %></td>
-    </tr>
-  <% end %>
-  <%= paginate @users %>
-  </tbody>
-</table>
-<!--</div>-->
-
-<br>
-<% if @users.present? %>
-<% else %>
-  <%= link_to "#{t('view.task_new')}", new_blog_path,class: 'btn btn-info' %><br>
-<% end %>
-<%= link_to "#{t('view.sort')}", users_path(expired_at: "true"), class: 'btn btn-info' %><br>
-<%= link_to "#{t('view.priority_sort')}", users_path(priority: "true"), class: 'btn btn-info' %><br>
-<% if params[:q].present?%>
-  <%= link_to "#{t('view.index_all')}", users_path, class: 'btn btn-default' %><br>
-<% end %>
+  <div class="panel-footer">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>duty</th>
+        <th>Details</th>
+        <th>expired_at</th>
+        <th>state</th>
+        <th>priority</th>
+        <th>labels</th>
+      </tr>
+      </thead>
+    <tbody>
+    <% @users.each do |blog| %>
+      <tr>
+        <td><%= blog.name %></td>
+        <td><%= blog.details %></td>
+        <td><%= l blog.expired_at, format: :short %></td>
+        <td><%= blog.state %></td>
+        <td><%= blog.priority %></td>
+        <% blog.labelings.each do |labeling| %>
+          <td><%= labeling.label.label_name %></td>
+        <% end %>
+        <td><%= link_to "#{t('view.show')}", blog, class: "btn btn-primary" %></td>
+        <td><%= link_to "#{t('view.edit')}", edit_blog_path(blog),class: "btn btn-success" %></td>
+        <td><%= link_to "#{t('view.destory')}", blog, method: :delete, data: { confirm: "#{t('view.confirm')}" },class: 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+    <%= paginate @users %>
+    </tbody>
+  </table>
+  </div>
+  </div>
+</div>

@@ -1,8 +1,9 @@
-<%= form_with(model:@blog, local: true) do |form| %>
+<%#= form_with(model:@blog, local: true) do |form| %
+<%#= render 'form' %>
+<%= form_with(model:@blog, local: true) do |f| %>
   <% if @blog.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@blog.errors.count, "#{t('view.error')}") %></h2>
-
       <ul>
         <% @blog.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -10,52 +11,62 @@
       </ul>
     </div>
   <% end %>
+<div class="container">
+  <div class="col">
+    <div class="card-size">
+      <div class="title text-center">
+        <% unless @blog.id.present? %>
+          <h3><%= "タスク作成" %></h3>
+        <% else %>
+          <h3><%= "アカウント編集" %></h3>
+        <% end %>
+      </div>
+      <div class="row">
+        <div class="col text-center">
+          <%#= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+          <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+          </div>
+          <div class="form-group">
+            <%= f.label :details %>
+            <%= f.text_area :details %>
+          </div>
+          <div class="form-group">
+            <%= f.label :expired_at %>
+            <%= f.datetime_select :expired_at %>
+          </div>
+          <div class="form-group">
+            <%= f.label :state %>
+            <%= f.select :state,[['未着手',"未着手"],['着手中',"着手中"],['完了',"完了"]], include_blank: "指定無し" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :priority %>
+            <%= f.select :priority, Blog.priorities.keys.to_a, {},  include_blank: "指定無し" %>
+          </div>
+          <% Label.all.each do |label| %>
+            <% if  label.user_id.nil? %>
+              <%= f.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+              <label><%= label.label_name %></label>
+            <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+            <% if label.user_id == current_user.id %>
+              <%= f.check_box :label_ids, { multipie: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+              <label><%= label.label_name %></label>
+            <% end %>
+          <% end %>
+          <div class="form-group">
+            <% unless @blog.id.present? %>
+              <%= f.submit "作成", class: "btn btn-lg btn-primary"%>
+            <% else %>
+              <%= f.submit "更新", class: "btn btn-lg btn-primary"%>
+            <% end %>
+          </div>
+        <% end %>
+        <%#= render 'layouts/simple_log' %>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= form.label :details %>
-    <%= form.text_area :details %>
-  </div>
-
-  <div class="field">
-    <%= form.label :expired_at %>
-    <%= form.datetime_select :expired_at %>
-  </div>
-
-  <div class="field">
-    <%= form.label :state %>
-    <%= form.select :state,[['未着手',"未着手"],['着手中',"着手中"],['完了',"完了"]], include_blank: "指定無し" %>
-  </div>
-
-  <div class="field">
-    <%= form.label :priority %>
-    <%= form.select :priority, Blog.priorities.keys.to_a, {},  include_blank: "指定無し" %>
-  </div>
-
-  <% Label.all.each do |label| %>
-    <% if  label.user_id.nil? %>
-      <%= form.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
-    <label><%= label.label_name %></label>
-    <% end %>
-
-    <% if label.user_id == current_user.id %>
-      <%= form.check_box :label_ids, { multipie: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
-      <label><%= label.label_name %></label>
-    <% end %>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
-
-<%= link_to "#{t('view.back')}", blogs_path %>
-
-<%# Label.all.each do |label| %>
-  <%#= form.check_box :label_ids, { multiple: true, checked: @task.labels.find_by(id: label.id).present?, include_hidden: false }, label[:id] %>
-<!--  <label class='badge badge-secondary'><%#= label.name %></label>-->
-<%# end %>

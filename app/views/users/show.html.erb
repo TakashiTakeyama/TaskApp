@@ -1,16 +1,27 @@
-<h3><%= t('view.user_show') %></h3>
-<p>
-  <strong><%= t('view.user_name') %></strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong><%= t('view.user_email') %></strong>
-  <%= @user.email %>
-</p>
-
-<%= link_to "#{t('view.user_task')}", new_blog_path %><br>
-<%= link_to "#{t('view.label_new')}", new_label_path %><br>
-<%= link_to "#{t('view.back_index')}", blogs_path %><br>
-<%= link_to "#{t('view.edit')}", edit_user_path(@user) %><br>
-
+<!--<h3><%#= t('view.user_show') %></h3>-->
+<div class="row">
+  <div class="col-sm-6 col-md-3">
+    <div class="thumbnail">
+      <div class="caption text-center">
+        <h4>ユーザー情報</h4>
+        <p>
+          <strong><%= t('view.name') %></strong>
+          <%= @user.name %>
+        </p>
+        <p>
+          <strong>email</strong>
+          <%= @user.email %>
+        </p>
+        <%= link_to "#{t('view.edit')}", edit_user_path(@user), class: "btn btn-info" %>
+        <%= link_to "#{t('view.back')}", blogs_path, class: "btn btn-info" %>
+      </div><!-- /.caption -->
+    </div><!-- /.thumbnail -->
+  </div><!-- /.col-sm-6.col-md-3 -->
+  ...
+</div><!-- /.row -->
+<div>
+  <%= link_to "#{t('view.user_task')}", new_blog_path, class: "btn btn-info btn-lg" %><br>
+  <%= link_to "#{t('view.label_new')}", new_label_path, class: "btn btn-info btn-lg"%><br>
+  <%= link_to "#{t('view.back_index')}", blogs_path, class: "btn btn-info btn-lg"%><br>
+<!--  <%#= link_to "#{t('view.edit')}, edit_user_path(@user), class: "btn btn-info btn-lg" %><br>-->
+</div>

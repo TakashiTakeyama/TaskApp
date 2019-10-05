@@ -1,23 +1,36 @@
-<h3><%= t('view.label_index') %></h3>
+<!--<h3>UserIndex</h3>-->
+<p id="notice"><%= notice %></p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3>ラベル一覧</h3>
+    <div class="panel-body">
+    </div>
+    <div class="panel-footer">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>ラベル名</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @labels.each do |label| %>
+          <tr>
+            <td><%= label.label_name %></td>
+            </td>
+            <td><%= link_to "#{t('view.show')}", label, class: "btn btn-primary" %>
+            <%= link_to "#{t('view.edit')}", edit_blog_path(label),class: "btn btn-success" %>
+            <%= link_to "#{t('view.destory')}", label, method: :delete, data: { confirm: "#{t('view.confirm')}" },class: 'btn btn-danger' %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div>
+<%= link_to "#{t('view.label_new')}", new_label_path, class: "btn btn-info btn-lg"%><br>
+<%= link_to "#{t('view.back_index')}", blogs_path, class: "btn btn-info btn-lg"%><br>
+</div>
 
-<!--<div class="cotainer">-->
-<table class="table">
-  <thead>
-  <tr>
-    <th><%= t('view.label_name') %></th>
-    <!--      <th colspan="5"></th>-->
-  </tr>
-  </thead>
-  <tbody>
-  <% @labels.each do |label| %>
-    <tr>
-      <td><%= label.label_name %></td>
-      <td><%= link_to "#{t('view.destory')}", label, method: :delete, data: { confirm: "#{t('view.confirm')}" },class: 'btn btn-danger' %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-<!--</div>-->
 
-<br>
-<%= link_to "#{t('view.label_new')}", new_label_path,class: 'btn btn-info' %><br>

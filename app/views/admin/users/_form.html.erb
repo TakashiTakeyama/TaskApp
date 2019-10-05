@@ -1,37 +1,59 @@
-<%#= form_with(model:@user, local: true) do |form| %>
-  <%# if @user.errors.any? %>
-<!--    <div id="error_explanation">-->
-<!--      <h2><%#= pluralize(@user.errors.count, "#{t('view.error')}") %></h2>-->
-
-<!--      <ul>-->
-        <%# @user.errors.full_messages.each do |message| %>
-<!--          <li><%#= message %></li>-->
-        <%# end %>
-<!--      </ul>-->
-<!--    </div>-->
-  <%# end %>
-
-<!--  <div class="field">-->
-    <%#= form.label :name %>
-    <%#= form.text_field :name %>
-<!--  </div>-->
-
-<!--  <div class="field">-->
-    <%#= form.label :email %>
-    <%#= form.text_field :email %>
-<!--  </div>-->
-
-<!--  <div class="field">-->
-    <%#= form.label :password %>
-    <%#= form.password_field :password %>
-<!--  </div>-->
-
-<!--  <div class="field">-->
-    <%#= form.label :password_confirmation %>
-    <%#= form.password_field :password_confirmation %>
-<!--  </div>-->
-
-<!--  <div class="actions">-->
-    <%#= form.submit %>
-<!--  </div>-->
-<%# end %>
+<%#= render 'form' %>
+<%= form_with(model:@user, local: true, url: admin_users_path) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "#{t('view.error')}") %></h2>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="container">
+  <div class="col">
+    <div class="card-size">
+      <div class="title text-center">
+        <% unless @user.id.present? %>
+          <h3><%= "アカウント作成" %></h3>
+        <% else %>
+          <h3><%= "アカウント編集" %></h3>
+        <% end %>
+      </div>
+      <div class="row">
+        <div class="col text-center">
+          <%#= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+          <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+          </div>
+          <div class="form-group">
+            <%= f.label :email %>
+            <%= f.email_field :email %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password %>
+            <%= f.text_field :password %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password_confirmation %>
+            <%= f.text_field :password_confirmation %>
+          </div>
+          <div class="form-group">
+            <%= f.label :admin %>
+            <%= f.check_box :administrator %>
+          </div>
+          <div class="form-group">
+            <% unless @user.id.present? %>
+              <%= f.submit "作成", class: "btn btn-lg btn-primary"%>
+            <% else %>
+              <%= f.submit "更新", class: "btn btn-lg btn-primary"%>
+            <% end %>
+          </div>
+      <% end %>
+  <%#= render 'layouts/simple_log' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -44,3 +44,4 @@ gem 'kaminari'
 gem 'faker'
 gem 'bcrypt'
 gem 'rails_12factor', group: :production
+gem 'font-awesome-sass', '~> 5.4.1'

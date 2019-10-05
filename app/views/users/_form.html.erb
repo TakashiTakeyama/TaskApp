@@ -52,7 +52,11 @@
     <div class="col">
       <div class="card-size">
         <div class="title text-center">
-          <h3><%= "アカウント作成" %></h3>
+          <% unless @user.id.present? %>
+            <h3><%= "アカウント作成" %></h3>
+          <% else %>
+            <h3><%= "アカウント編集" %></h3>
+          <% end %>
         </div>
         <div class="row">
         <div class="col text-center">
